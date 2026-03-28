@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduRefer — Digital Marketing Mastery Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #6C63FF;
+    --accent: #00D4AA;
+    --gold: #FFD700;
+    --bg: #08080F;
+    --bg2: #0F0F1E;
+    --card: #12121F;
+    --card2: #1A1A2E;
+    --text: #FFFFFF;
+    --muted: #8888AA;
+    --border: rgba(255,255,255,0.06);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(8,8,15,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; text-decoration: none; color: var(--text); }
+  .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: linear-gradient(135deg, var(--primary), #9C63FF) !important; color: white !important; padding: 10px 24px !important; border-radius: 100px !important; font-weight: 500 !important; }
+  @media (max-width: 768px) { nav { padding: 16px 20px; } .nav-links { display: none; } }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; }
+  .hero-glow { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%); pointer-events: none; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.25); border-radius: 100px; padding: 6px 16px; font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+  .badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(40px, 7vw, 84px); font-weight: 800; line-height: 1.0; letter-spacing: -2px; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; }
+  .gradient-text { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 580px; line-height: 1.75; margin-bottom: 16px; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+  .hindi-sub { font-size: 15px; color: rgba(136,136,170,0.65); margin-bottom: 48px; animation: fadeUp 0.6s 0.25s ease both; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--primary), #9C63FF); color: white; padding: 16px 32px; border-radius: 14px; font-size: 16px; font-weight: 500; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 32px rgba(108,99,255,0.3); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(108,99,255,0.45); }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--card); color: var(--text); padding: 16px 32px; border-radius: 14px; font-size: 16px; font-weight: 500; text-decoration: none; border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
+  .btn-secondary:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.15); }
+
+  .stats { display: flex; justify-content: center; gap: 60px; padding: 48px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg2); flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  @media (max-width: 768px) { .stats { gap: 30px; } }
+
+  .section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(30px, 4vw, 50px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
+  .section-sub { color: var(--muted); font-size: 17px; max-width: 520px; line-height: 1.7; font-weight: 300; margin-bottom: 60px; }
+
+  .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .learn-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+  .learn-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.25); }
+  .learn-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .learn-card:hover::after { transform: scaleX(1); }
+  .learn-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .learn-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .learn-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  .course-section { background: var(--bg2); padding: 100px 24px; }
+  .course-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  @media (max-width: 768px) { .course-inner { grid-template-columns: 1fr; } }
+  .course-tag { display: inline-block; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.25); color: var(--gold); padding: 4px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+  .course-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
+  .course-desc { color: var(--muted); font-size: 16px; line-height: 1.75; margin-bottom: 32px; font-weight: 300; }
+  .price-box { display: flex; align-items: baseline; gap: 10px; margin-bottom: 32px; }
+  .price { font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800; background: linear-gradient(135deg, var(--gold), #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .price-label { color: var(--muted); font-size: 14px; }
+  .checklist { display: flex; flex-direction: column; gap: 14px; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+  .check-icon { width: 22px; height: 22px; background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.25); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+  .affiliate-section { padding: 80px 24px; max-width: 800px; margin: 0 auto; text-align: center; }
+  .affiliate-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 48px; }
+  .affiliate-icon { font-size: 40px; margin-bottom: 20px; }
+  .affiliate-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 14px; }
+  .affiliate-desc { color: var(--muted); font-size: 16px; line-height: 1.75; max-width: 520px; margin: 0 auto 20px; font-weight: 300; }
+
+  .trust-section { background: var(--bg2); padding: 80px 24px; }
+  .trust-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  .trust-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 40px; }
+  .trust-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+  .trust-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px 20px; }
+  .trust-icon { font-size: 28px; margin-bottom: 12px; }
+  .trust-card-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .trust-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  .cta-section { padding: 120px 24px; text-align: center; position: relative; }
+  .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 70%); pointer-events: none; }
+  .cta-title { font-family: 'Syne', sans-serif; font-size: clamp(34px, 5vw, 60px); font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; line-height: 1.05; }
+  .cta-sub { color: var(--muted); font-size: 18px; margin-bottom: 10px; font-weight: 300; }
+  .cta-hindi { color: rgba(136,136,170,0.55); font-size: 15px; margin-bottom: 48px; }
+
+  .legal-wrap { background: var(--bg2); padding: 80px 24px; }
+  .legal-inner { max-width: 900px; margin: 0 auto; }
+  .legal-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+  .tab-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 20px; border-radius: 100px; font-size: 13px; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .tab-btn.active, .tab-btn:hover { background: var(--primary); border-color: var(--primary); color: white; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .legal-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 12px; margin-top: 36px; color: var(--text); }
+  .legal-title:first-child { margin-top: 0; }
+  .legal-text { color: var(--muted); font-size: 14px; line-height: 1.85; margin-bottom: 12px; }
+  .legal-text a { color: var(--accent); text-decoration: none; }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 24px; text-align: center; color: var(--muted); font-size: 13px; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+  .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🎓</div>
+    Edur
+  </a>
+  <div class="nav-links">
+    <a href="#learn">Curriculum</a>
+    <a href="#course">Course</a>
+    <a href="#legal">Legal</a>
+    <a href="#download" class="nav-cta">Get Started →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="badge"><span class="badge-dot"></span> Premium Digital Marketing Education</div>
+  <h1>Master Digital<br><span class="gradient-text">Marketing Skills</span></h1>
+  <p class="hero-sub">A comprehensive, practical course designed for Indians who want to build real, in-demand skills in digital marketing — from social media to paid advertising.</p>
+  <p class="hindi-sub">डिजिटल मार्केटिंग सीखो और अपने करियर को नई ऊंचाइयों पर ले जाओ।</p>
+  <div class="hero-btns">
+    <a href="#download" class="btn-primary">📱 Download the App</a>
+    <a href="#learn" class="btn-secondary">View Curriculum ↓</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">₹799</div><div class="stat-label">One-time Course Fee</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Practical & Hands-on</div></div>
+  <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Lifetime Access</div></div>
+  <div class="stat-item"><div class="stat-num">5★</div><div class="stat-label">Student Rated</div></div>
+</div>
+
+<section class="section" id="learn">
+  <div class="reveal">
+    <p class="section-tag">Curriculum</p>
+    <h2 class="section-title">Everything you need to<br><span class="gradient-text">succeed online</span></h2>
+    <p class="section-sub">Our course covers the full spectrum of modern digital marketing — the exact skills businesses are hiring for right now.</p>
+  </div>
+  <div class="learn-grid reveal">
+    <div class="learn-card">
+      <span class="learn-icon">📱</span>
+      <div class="learn-title">Social Media Marketing</div>
+      <div class="learn-desc">Build and grow brand presence across Instagram, Facebook, LinkedIn, and YouTube. Learn content strategy, posting schedules, and audience engagement that drives real results.</div>
+    </div>
+    <div class="learn-card">
+      <span class="learn-icon">🔍</span>
+      <div class="learn-title">SEO & Content Strategy</div>
+      <div class="learn-desc">Understand how search engines work and rank your content on Google. Learn keyword research, on-page SEO, and content writing that attracts organic traffic consistently.</div>
+    </div>
+    <div class="learn-card">
+      <span class="learn-icon">💰</span>
+      <div class="learn-title">Paid Advertising</div>
+      <div class="learn-desc">Run profitable ad campaigns on Meta and Google Ads. Learn targeting, budgeting, creatives, and how to measure ROI to get the most from every rupee spent.</div>
+    </div>
+    <div class="learn-card">
+      <span class="learn-icon">📧</span>
+      <div class="learn-title">Email Marketing</div>
+      <div class="learn-desc">Build email lists, write compelling newsletters, and create automated funnels that convert subscribers into paying customers on autopilot.</div>
+    </div>
+    <div class="learn-card">
+      <span class="learn-icon">📊</span>
+      <div class="learn-title">Analytics & Reporting</div>
+      <div class="learn-desc">Use Google Analytics and Meta Business Suite to measure what's working. Learn to read data and make smarter marketing decisions backed by numbers.</div>
+    </div>
+    <div class="learn-card">
+      <span class="learn-icon">🛒</span>
+      <div class="learn-title">E-Commerce Marketing</div>
+      <div class="learn-desc">Learn how to market products online — from listings and descriptions to retargeting campaigns that bring back customers who didn't buy the first time.</div>
+    </div>
+  </div>
+</section>
+
+<section class="course-section" id="course">
+  <div class="course-inner">
+    <div class="reveal">
+      <div class="course-tag">✦ What's Included</div>
+      <h2 class="course-title">Digital Marketing<br>Mastery Course</h2>
+      <p class="course-desc">A structured, beginner-friendly program taught in simple Hindi and English. No prior experience required. Learn at your own pace, entirely on your phone.</p>
+      <div class="price-box">
+        <div class="price">₹799</div>
+        <div class="price-label">one-time · lifetime access</div>
+      </div>
+      <a href="#download" class="btn-primary">Enroll Now →</a>
+    </div>
+    <div class="checklist reveal">
+      <div class="check-item"><div class="check-icon">✓</div>Full video course on the EduRefer mobile app</div>
+      <div class="check-item"><div class="check-icon">✓</div>6 in-depth modules covering all aspects of digital marketing</div>
+      <div class="check-item"><div class="check-icon">✓</div>Taught in simple Hindi & English for easy understanding</div>
+      <div class="check-item"><div class="check-icon">✓</div>Learn on your own schedule — no deadlines, no pressure</div>
+      <div class="check-item"><div class="check-icon">✓</div>Lifetime access including all future course updates</div>
+      <div class="check-item"><div class="check-icon">✓</div>Practical assignments to apply what you learn</div>
+      <div class="check-item"><div class="check-icon">✓</div>Secure payment via Razorpay — UPI, cards, net banking</div>
+      <div class="check-item"><div class="check-icon">✓</div>Optional: Promote our course and earn a commission</div>
+    </div>
+  </div>
+</section>
+
+<section class="affiliate-section">
+  <div class="affiliate-card reveal">
+    <div class="affiliate-icon">🤝</div>
+    <h3 class="affiliate-title">Course Affiliate Program</h3>
+    <p class="affiliate-desc">After purchasing the course, students have the option to promote EduRefer to others and earn a commission on each successful course sale. This is entirely optional — the primary value of EduRefer is the digital marketing education itself.</p>
+    <p style="color:var(--muted);font-size:13px;line-height:1.7;">Our affiliate program is a standard course referral arrangement in compliance with applicable Indian laws. Commissions are paid only on verified course purchases.</p>
+  </div>
+</section>
+
+<section class="trust-section">
+  <div class="trust-inner">
+    <h2 class="trust-title reveal">Trusted & Secure</h2>
+    <div class="trust-cards reveal">
+      <div class="trust-card"><div class="trust-icon">🔒</div><div class="trust-card-title">Secure Payments</div><div class="trust-card-desc">All payments processed by Razorpay — India's most trusted payment gateway.</div></div>
+      <div class="trust-card"><div class="trust-icon">📱</div><div class="trust-card-title">Mobile First</div><div class="trust-card-desc">Learn from your Android phone anytime, anywhere at your own pace.</div></div>
+      <div class="trust-card"><div class="trust-icon">🔄</div><div class="trust-card-title">7-Day Refund</div><div class="trust-card-desc">Not satisfied? Contact us within 7 days for a full refund, no questions asked.</div></div>
+      <div class="trust-card"><div class="trust-icon">🛡️</div><div class="trust-card-title">Data Privacy</div><div class="trust-card-desc">Your data is encrypted and securely stored. We never sell your information.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="download">
+  <div class="cta-glow"></div>
+  <h2 class="cta-title reveal">Start learning<br><span class="gradient-text">today.</span></h2>
+  <p class="cta-sub reveal">Download the EduRefer app and begin your digital marketing journey.</p>
+  <p class="cta-hindi reveal">आज से शुरू करें — डिजिटल मार्केटिंग सीखें और अपना भविष्य बनाएं।</p>
+  <div class="hero-btns reveal">
+    <a href="#" class="btn-primary" id="apk-link">📱 Download for Android</a>
+    <a href="mailto:support@edurefer.app" class="btn-secondary">✉️ Contact Support</a>
+  </div>
+  <p style="margin-top:24px;color:var(--muted);font-size:13px;">Free to download · ₹799 course fee · Secure checkout via Razorpay</p>
+</section>
+
+<div class="legal-wrap" id="legal">
+  <div class="legal-inner">
+    <div class="legal-tabs">
+      <button class="tab-btn active" onclick="showTab('terms',this)">Terms & Conditions</button>
+      <button class="tab-btn" onclick="showTab('privacy',this)">Privacy Policy</button>
+      <button class="tab-btn" onclick="showTab('refund',this)">Refund Policy</button>
+      <button class="tab-btn" onclick="showTab('affiliate',this)">Affiliate Terms</button>
+    </div>
+
+    <div class="tab-content active" id="tab-terms">
+      <h2 class="legal-title">Terms & Conditions</h2>
+      <p class="legal-text">Last updated: January 2024. These Terms govern your use of the EduRefer mobile application and website. By downloading the app or purchasing our course, you agree to these terms in full.</p>
+      <h2 class="legal-title">1. About EduRefer</h2>
+      <p class="legal-text">EduRefer is an educational platform that offers a Digital Marketing Mastery course through a mobile application, operated by an individual proprietor based in India.</p>
+      <h2 class="legal-title">2. Course Purchase</h2>
+      <p class="legal-text">The Digital Marketing Mastery course is available for a one-time fee of ₹799. Upon successful payment, you receive lifetime access to all course content. Course access is personal and non-transferable.</p>
+      <h2 class="legal-title">3. Payment</h2>
+      <p class="legal-text">All payments are processed securely through Razorpay, a licensed payment aggregator regulated by the Reserve Bank of India. We accept UPI, debit cards, credit cards, and net banking. EduRefer does not store any payment card information.</p>
+      <h2 class="legal-title">4. User Accounts</h2>
+      <p class="legal-text">You must create an account to access the course. You are responsible for maintaining the confidentiality of your credentials. You must provide accurate information during registration and may not share your account with others.</p>
+      <h2 class="legal-title">5. Intellectual Property</h2>
+      <p class="legal-text">All course content is the intellectual property of EduRefer. You may not reproduce, distribute, or share any course content without written permission. Access is granted for personal educational use only.</p>
+      <h2 class="legal-title">6. Affiliate Program</h2>
+      <p class="legal-text">EduRefer offers an optional affiliate program where course purchasers may promote the course and earn a commission on verified sales. Participation is voluntary. This is a standard affiliate marketing arrangement — commissions are earned on product sales only, not on recruitment of any kind.</p>
+      <h2 class="legal-title">7. Wallet & Withdrawals</h2>
+      <p class="legal-text">Affiliate commissions are credited to an in-app wallet. Users may withdraw amounts above ₹100 via UPI within 2-3 business days. Earnings are subject to applicable Indian tax laws including TDS where applicable.</p>
+      <h2 class="legal-title">8. Prohibited Activities</h2>
+      <p class="legal-text">Users may not use the platform for fraudulent activity, manipulate the affiliate system, create fake accounts, or use the platform in any way that violates Indian law.</p>
+      <h2 class="legal-title">9. Limitation of Liability</h2>
+      <p class="legal-text">EduRefer provides the course on an "as is" basis. We do not guarantee specific income outcomes. Our liability is limited to the amount paid for the course.</p>
+      <h2 class="legal-title">10. Governing Law</h2>
+      <p class="legal-text">These terms are governed by the laws of India. Disputes shall be subject to Indian court jurisdiction. Contact: <a href="mailto:support@edurefer.app">support@edurefer.app</a></p>
+    </div>
+
+    <div class="tab-content" id="tab-privacy">
+      <h2 class="legal-title">Privacy Policy</h2>
+      <p class="legal-text">Last updated: January 2024. EduRefer is committed to protecting your personal information.</p>
+      <h2 class="legal-title">1. Data We Collect</h2>
+      <p class="legal-text">We collect: your full name, email address, phone number, and UPI ID (only if you choose to withdraw earnings). We also collect usage data such as course progress and login timestamps for security purposes.</p>
+      <h2 class="legal-title">2. How We Use Your Data</h2>
+      <p class="legal-text">Your data is used to create and manage your account, provide course access, process payments and withdrawals, and send important account notifications. We do not use your data for unsolicited marketing.</p>
+      <h2 class="legal-title">3. Data Storage & Security</h2>
+      <p class="legal-text">Your data is stored securely using Supabase with encryption in transit (TLS) and at rest. We implement Row Level Security ensuring only you can access your own data.</p>
+      <h2 class="legal-title">4. Data Sharing</h2>
+      <p class="legal-text">We do not sell or share your personal data for marketing. We share data only with Razorpay (payment processing) and Firebase (push notifications), and as required by law.</p>
+      <h2 class="legal-title">5. Your Rights</h2>
+      <p class="legal-text">You may request access to, correction of, or deletion of your personal data at any time by contacting <a href="mailto:support@edurefer.app">support@edurefer.app</a>. We respond within 48 hours.</p>
+      <h2 class="legal-title">6. Cookies</h2>
+      <p class="legal-text">Our website uses minimal cookies for basic functionality. Our mobile app does not use tracking cookies. We do not use third-party advertising cookies.</p>
+    </div>
+
+    <div class="tab-content" id="tab-refund">
+      <h2 class="legal-title">Refund Policy</h2>
+      <p class="legal-text">Last updated: January 2024. We want you to be completely satisfied with your purchase.</p>
+      <h2 class="legal-title">7-Day Money Back Guarantee</h2>
+      <p class="legal-text">If you are not satisfied with the course for any reason, you may request a full refund within 7 days of purchase. Email <a href="mailto:support@edurefer.app">support@edurefer.app</a> with your registered email and we will process your refund promptly.</p>
+      <h2 class="legal-title">Refund Process</h2>
+      <p class="legal-text">Approved refunds are credited back to your original payment method within 5-7 business days via Razorpay.</p>
+      <h2 class="legal-title">Conditions</h2>
+      <p class="legal-text">Refund requests must be made within 7 days of purchase. Only one refund is allowed per user. Affiliate commissions earned before the refund will be deducted from the refund amount.</p>
+      <h2 class="legal-title">Non-Refundable Items</h2>
+      <p class="legal-text">Affiliate commissions already paid out to your UPI account are non-refundable. In-app wallet balances can be withdrawn via UPI as per our withdrawal policy.</p>
+    </div>
+
+    <div class="tab-content" id="tab-affiliate">
+      <h2 class="legal-title">Affiliate Program Terms</h2>
+      <p class="legal-text">Last updated: January 2024. These terms govern participation in the EduRefer Affiliate Program. Participation is entirely optional.</p>
+      <h2 class="legal-title">1. Eligibility</h2>
+      <p class="legal-text">To participate, you must have purchased the Digital Marketing Mastery course and be an Indian resident above the age of 18.</p>
+      <h2 class="legal-title">2. How It Works</h2>
+      <p class="legal-text">Upon purchasing the course, you receive a unique referral code. When someone purchases the course using your code, you earn a commission on that sale. Commissions are earned only on verified, completed purchases.</p>
+      <h2 class="legal-title">3. Commission Structure</h2>
+      <p class="legal-text">Commission amounts are displayed within the EduRefer app. All commissions are paid only on genuine course purchases and not on any recruitment fees or joining charges of any kind.</p>
+      <h2 class="legal-title">4. Legal Compliance</h2>
+      <p class="legal-text">EduRefer's affiliate program is not a multi-level marketing (MLM) scheme, pyramid scheme, or money circulation scheme as defined under the Prize Chits and Money Circulation Schemes (Banning) Act, 1978. The primary business is the sale of an educational course. No participant is required to recruit others.</p>
+      <h2 class="legal-title">5. Tax & Withdrawals</h2>
+      <p class="legal-text">Commissions can be withdrawn via UPI once the wallet balance reaches ₹100. Withdrawals are subject to applicable TDS as per Indian Income Tax regulations. Users are responsible for declaring affiliate income in their tax returns.</p>
+      <h2 class="legal-title">6. Prohibited Conduct</h2>
+      <p class="legal-text">Affiliates must not make false claims about earnings, use spam or deceptive advertising, or create fake accounts. Violations result in immediate termination and forfeiture of pending commissions.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin-bottom:8px;">EduRefer</p>
+  <p style="margin-bottom:20px;font-size:13px;color:rgba(136,136,170,0.6);">Digital Marketing Education Platform · India</p>
+  <div class="footer-links">
+    <a href="#learn">Curriculum</a>
+    <a href="#course">Course</a>
+    <a href="#" onclick="showTab('terms',this);document.getElementById('legal').scrollIntoView()">Terms</a>
+    <a href="#" onclick="showTab('privacy',this);document.getElementById('legal').scrollIntoView()">Privacy Policy</a>
+    <a href="#" onclick="showTab('refund',this);document.getElementById('legal').scrollIntoView()">Refund Policy</a>
+    <a href="mailto:support@edurefer.app">Contact</a>
+  </div>
+  <p style="font-size:12px;color:rgba(136,136,170,0.4);margin-top:8px;">Payments secured by Razorpay · © 2024 EduRefer · All rights reserved</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
